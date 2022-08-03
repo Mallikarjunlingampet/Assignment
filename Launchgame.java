@@ -36,14 +36,17 @@ class Player
 		Scanner s = new Scanner(System.in);
 		System.out.println("Player kindly guess the number from above options " );
 		int pguessNum=s.nextInt();
+		int index = 0;
 		for(int i=0; i<4;i++) {
 			
 			if(pguessNum==c[i]) {
 				
 				pguessNum=c[i];
+				index = i;
+				//return i;
 			}
 		}
-		
+		System.out.println( "Option is " + (index+1) );
 		return pguessNum;
 		
 		
