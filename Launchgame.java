@@ -1,5 +1,5 @@
  package Otp;
-
+import java.lang.*;
 import java.util.Scanner;
 
 class Guesser
@@ -23,24 +23,39 @@ class Player
 {
 	int pguessNum;
 	
+	
 	public int guessNumber()
 	{ 
-		int a[] = new int[4];
 		
-		Scanner scan=new Scanner(System.in);
-		System.out.println("choose number from below options");
-		for(int i=0; i<4; i++) {a[i]=scan.nextInt();
-		}
+		Umpire b = new Umpire();
+		int c[]=b.options();
+		
+		System.out.println("Choose options");
+		for(int i=0; i<4;i++) { System.out.println(c[i]);}
+		
+		Scanner s = new Scanner(System.in);
 		System.out.println("Player kindly guess the number from above options " );
-		int pguessNum=scan.nextInt();
-		for(int i=0;i<4;i++) { 
-		if(a[i]==pguessNum) { System.out.println("option " + (i+1));}
+		int pguessNum=s.nextInt();
+		for(int i=0; i<4;i++) {
+			
+			if(pguessNum==c[i]) {
+				
+				pguessNum=c[i];
+			}
 		}
+		
 		return pguessNum;
+		
+		
 	}
+	
+	
+		
+		
+		
 }
 
-class Umpire
+ class Umpire
 {
 	
 	int numFromGuesser;
@@ -48,6 +63,8 @@ class Umpire
 	int numFromPlayer2;
 	int numFromPlayer3;
 	
+    
+    
 	
 	public void collectNumFromGuesser()
 	{
@@ -57,6 +74,18 @@ class Umpire
 	}
 	
 	
+	 public int[] options() {
+		 int a[]= new int[4];
+		 System.out.println("enter options");
+		 Scanner s= new Scanner(System.in);
+		 for(int i=0;i<4; i++) {
+			 a[i]= s.nextInt();
+		 }
+		 
+		 return a;
+	 }
+	
+	
 	public void collectNumFromPlayer()
 	{
 		Player p1=new Player();
@@ -64,9 +93,12 @@ class Umpire
 		Player p3=new Player();
 		
 		
+		
 		numFromPlayer1=p1.guessNumber();
 		numFromPlayer2=p2.guessNumber();
 		numFromPlayer3=p3.guessNumber();
+		
+		
 	}
 	
 	void compare()
